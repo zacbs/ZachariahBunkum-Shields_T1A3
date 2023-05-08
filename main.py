@@ -1,18 +1,12 @@
 import datetime
-import nav
+
+from alarm import set_alarm
 # Prints current time
-# current_time = datetime.datetime.today()
-# print(current_time)
+current_time = datetime.datetime.now(tz=None).strftime('%H:%M')
 
+print(current_time)
 
-# Ask user if they want to 1. set an alarm, 2. view current saved alarms, 3. add new alarm sounds.
-# 1. If user wants to set an alarm, ask what time they want it for
-# 2. If user wants to view current saved alarms, show a list of the current saved alarms allow user to select one
-# If user wants to edit a saved alarm show settings for that alarm:
-# (features on this screen: toggle alarm, allow user to select days to repeat alarm)
-# 3. Explain how to add a new sound file ? (flesh this out more)
+alarm_time = input(
+    'What time do you want to set the alarm for (Format: 24hr time, 00:00)?')
 
-
-menu = input('Welcome to the alarm clock! What do you want to do ? \n 1. Set an alarm \n 2. View current saved alarms \n 3. Change alarm sound settings \n')
-
-nav.nav(menu)
+set_alarm()
