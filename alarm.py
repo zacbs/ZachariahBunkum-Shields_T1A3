@@ -1,14 +1,29 @@
 import datetime
-import time
+from time import sleep
 import csv
-import os.path
 from os import system
 
+# Exception handling for file creation and setting up the file for use if it is not correctly setup
+def file_create():
+    sample_header = ['alarm_time', 'alarm_on', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    try:
+        with open('saved_alarms.csv', 'x', newline='') as f:
+            writer = csv.writer(f)            
+            writer.writerow(sample_header)
+            pass       
+    except FileExistsError:
+        with open('saved_alarms.csv', 'r', newline='') as f:
+            reader = csv.DictReader(f)
+            header = reader.fieldnames
+        if header != sample_header:
+            with open('saved_alarms.csv', 'w', newline='') as f:
+                writer = csv.writer(f)            
+                writer.writerow(sample_header)
 
 def alarm(alarm_set_point):
     while True:
         # Halts program to only loop once per second
-        time.sleep(1)
+        sleep(1)
         current_time = datetime.datetime.now()
         string_time = current_time.strftime('%a, %H:%M')
         system('cls')
@@ -18,22 +33,11 @@ def alarm(alarm_set_point):
         print('Alarm time: ' + alarm_set_time)
         if string_time == alarm_set_time:
             print('Wake up!')
+            # Add turning the alarm off in the saved_alarms file
             break
 
 
 def save_alarm(alarm_set_point):
-    file_exsists = os.path.isfile('saved_alarms.csv')
-# This function ensures that the header is only written once and handles if there is no save file present
-    if file_exsists:
-        with open('saved_alarms.csv', 'r', newline='') as f:
-            reader = csv.DictReader(f)
-            header = reader.fieldnames[0]
-
     with open('saved_alarms.csv', 'a', newline='') as f:
-        fieldname = ['alarm_time']
-        writer = csv.DictWriter(f, fieldnames=fieldname)
-        # Write header if file doesn't exist or if no header
-        if (file_exsists == False or header != 'alarm_time'):
-            writer.writeheader()
-        alarmlist = [{'alarm_time': alarm_set_point}]
-        writer.writerows(alarmlist)
+        writer = csv.DictWriter(f,fieldnames=['alarm_time', 'alarm_on'])
+        writer.writerow({'alarm_time':alarm_set_point, 'alarm_on':True})
