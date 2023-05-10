@@ -22,6 +22,7 @@ def file_create():
                 writer = csv.writer(f)            
                 writer.writerow(sample_header)
 
+# TODO: Refactor core alarm logic out of this function into main.py
 def alarm(alarm_set_point):
     while True:
         # Halts program to only loop once per second
@@ -47,15 +48,13 @@ def save_alarm(alarm_set_point):
 
 def value_toggle(target_row, target_column, target_value):
     rows = []
-    with open('saved_alarms.csv', 'r') as file:
-        reader = csv.DictReader(file)
+    with open('saved_alarms.csv', 'r') as f:
+        reader = csv.DictReader(f)
         rows = list(reader)
     for row in rows:
         if row['alarm_time'] == target_row:
             row[target_column] = target_value
-
-    # Write the updated rows back to the CSV file
-    with open('saved_alarms.csv', 'w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=sample_header)
+    with open('saved_alarms.csv', 'w', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=sample_header)
         writer.writeheader()
         writer.writerows(rows)

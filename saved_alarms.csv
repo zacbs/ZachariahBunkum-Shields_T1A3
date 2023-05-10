@@ -1,3 +1,7 @@
 alarm_time,alarm_on,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
-00:00,True,False,False,False,False,False,False,False
-23:41,False,False,False,False,False,False,False,False
+23:20,False,False,False,False,False,False,False,False
+04:30,True,True,False,False,False,False,False,False
+03:33,False,False,False,False,False,False,False,False
+15:45,False,False,False,False,False,False,False,False
+20:55,True,False,False,False,False,False,False,False
+18:23,False,False,False,False,False,False,False,False
