@@ -2,27 +2,9 @@ import datetime
 from time import sleep
 import csv
 from os import system
-
+from filehandler import sample_header
 # Exception handling for file creation and setting up the file for use if it is not correctly setup
 
-sample_header = ['alarm_time', 'alarm_on', 'Monday', 'Tuesday',
-                 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-
-
-def file_create():
-    try:
-        with open('saved_alarms.csv', 'x', newline='') as f:
-            writer = csv.writer(f)
-            writer.writerow(sample_header)
-            pass
-    except FileExistsError:
-        with open('saved_alarms.csv', 'r', newline='') as f:
-            reader = csv.DictReader(f)
-            header = reader.fieldnames
-        if header != sample_header:
-            with open('saved_alarms.csv', 'w', newline='') as f:
-                writer = csv.writer(f)
-                writer.writerow(sample_header)
 
 # TODO: Refactor core alarm logic out of this function into main.py
 
@@ -49,9 +31,11 @@ def alarm(alarm_set_point):
 
 def save_alarm(alarm_set_point):
     with open('saved_alarms.csv', 'a', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=sample_header)
+        writer = csv.DictWriter(f, fieldnames=sample_header())
         writer.writerow({'alarm_time': alarm_set_point, 'alarm_on': True, 'Monday': False, 'Tuesday': False,
                         'Wednesday': False, 'Thursday': False, 'Friday': False, 'Saturday': False, 'Sunday': False, })
+
+# TODO: Move to filehandler
 
 
 def value_toggle(target_row, target_column, target_value):

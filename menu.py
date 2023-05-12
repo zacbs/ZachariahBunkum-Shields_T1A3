@@ -1,5 +1,5 @@
 import csv
-
+import alarm
 
 def menu_saved():
     print('Current saved alarms:')
@@ -24,6 +24,6 @@ def menu_saved_alarm(alarm_time):
         f'Currently editing {alarm_time} alarm.\nPress 1 to turn this alarm on.\nPress 2 to turn on reoccuring alarm.\nPress 3 to delete the current alarm.')
     return input()
 
-
-menu_saved_alarm('11:30')
-# print(menu_saved())
+def main_menu():
+    print('Welcome to the alarm clock!\nThis')
+    pass
