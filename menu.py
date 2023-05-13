@@ -48,6 +48,7 @@ def saved_alarm_menu(alarm_time):
                 filehandler.value_toggle(alarm_time, 'alarm_on', False)
             else:
                 filehandler.value_toggle(alarm_time, 'alarm_on', True)
+            clear_screen()
             saved_alarm_menu(alarm_time)
 
     return user_output
@@ -67,5 +68,3 @@ def alarm_menu():
 def clear_screen():
     system('cls')
     system('clear')
-
-filehandler.value_toggle('11:30','alarm_on', True)
