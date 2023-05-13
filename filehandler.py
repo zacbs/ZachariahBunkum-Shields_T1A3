@@ -1,12 +1,10 @@
 import csv
 
-
 def csv_list():
     with open('saved_alarms.csv', 'r') as f:
         reader = csv.DictReader(f)
         rows = list(reader)
     return rows
-
 
 def sample_header():
     sample_header = ['alarm_time', 'alarm_on', 'Monday', 'Tuesday',
@@ -37,7 +35,7 @@ def value_toggle(target_row, target_column, target_value):
         if row['alarm_time'] == target_row:
             row[target_column] = target_value
     with open('saved_alarms.csv', 'w', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=sample_header)
+        writer = csv.DictWriter(f, fieldnames=sample_header())
         writer.writeheader()
         writer.writerows(rows)
 
@@ -54,3 +52,4 @@ def delete_alarm(alarm_time):
         for row in csv_list():
             if row and row[0] != alarm_time():
                 writer.writerow(row)
+

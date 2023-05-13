@@ -30,6 +30,7 @@ user_input = menu.main_menu(alarm.current_time(), current_alarms)
 
 # TODO: Replace filler with saved alarms
 # TODO: Exception handling, breaks if user input not integer
+# TODO: Exception handling, user input on menu.saved_menu
 while True:
   current_alarms = ', '.join(filehandler.active_alarms(filehandler.csv_list()))
   if user_input == 1:
@@ -41,6 +42,9 @@ while True:
       user_input2 = menu.saved_menu()
       if user_input2 == 'q':
           user_input = 0
+      else:
+          menu.clear_screen()
+          menu.saved_alarm_menu(user_input2)
   elif user_input == 3:
       print('user pressed 3')
       break
