@@ -13,7 +13,6 @@ def sample_header():
                      'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     return sample_header
 
-
 def file_create():
     try:
         with open('saved_alarms.csv', 'x', newline='') as f:
@@ -28,3 +27,30 @@ def file_create():
             with open('saved_alarms.csv', 'w', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(sample_header())
+
+def value_toggle(target_row, target_column, target_value):
+    rows = []
+    with open('saved_alarms.csv', 'r') as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+    for row in rows:
+        if row['alarm_time'] == target_row:
+            row[target_column] = target_value
+    with open('saved_alarms.csv', 'w', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=sample_header)
+        writer.writeheader()
+        writer.writerows(rows)
+
+def active_alarms(list):
+    active_alarm = []
+    for dict in list:
+        if dict['alarm_on'] == 'True':
+            active_alarm.append(dict['alarm_time'])
+    return active_alarm
+
+def delete_alarm(alarm_time):
+    with open('saved_alarms.csv', 'w', newlines='') as f:
+        writer = csv.writer(f)
+        for row in csv_list():
+            if row and row[0] != alarm_time():
+                writer.writerow(row)

@@ -1,7 +1,8 @@
 import csv
 import alarm
+from os import system
 
-def menu_saved():
+def saved_menu():
     print('Current saved alarms:')
     with open('saved_alarms.csv', 'r') as f:
         reader = csv.DictReader(f)
@@ -19,11 +20,20 @@ def menu_saved():
     return input()
 
 
-def menu_saved_alarm(alarm_time):
+def saved_alarm_menu(alarm_time):
     print(
         f'Currently editing {alarm_time} alarm.\nPress 1 to turn this alarm on.\nPress 2 to turn on reoccuring alarm.\nPress 3 to delete the current alarm.')
-    return input()
+    return int(input())
 
-def main_menu():
-    print('Welcome to the alarm clock!\nThis')
-    pass
+def main_menu(current_time, active_alarms):
+    print(f'The current time is {current_time}.\nYou have alarms set for {active_alarms}\nPress 1 to set a new alarm.\nPress 2 to edit current saved alarms\nPress 3 to edit alarm sounds')
+    return int(input())
+
+def alarm_menu():
+    user_input = input('What time would you like to set the alarm for?\n')
+    print(f'New alarm set for: {user_input}')
+    return user_input
+
+def clear_screen():
+    system('cls')
+    system('clear')

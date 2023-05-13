@@ -2,14 +2,18 @@ import datetime
 from time import sleep
 import csv
 from os import system
-from filehandler import sample_header
-# Exception handling for file creation and setting up the file for use if it is not correctly setup
-
+import filehandler
 
 # TODO: Refactor core alarm logic out of this function into main.py
 
+def current_time():
+    current_time = datetime.datetime.now()
+    string_time = current_time.strftime('%a, %H:%M')
+    return string_time
 
-def alarm(alarm_set_point):
+# First iteration of the alarm function
+
+def set_alarm(alarm_set_point):
     while True:
         # Halts program to only loop once per second
         sleep(1)
@@ -23,30 +27,13 @@ def alarm(alarm_set_point):
         print('Alarm time: ' + alarm_set_time)
         if string_time == alarm_set_time:
             print('Wake up!')
-            value_toggle(alarm_set_point, 'alarm_on', False)
+            filehandler.value_toggle(alarm_set_point, 'alarm_on', False)
             break
 
 # Saves current set alarm
 
-
 def save_alarm(alarm_set_point):
     with open('saved_alarms.csv', 'a', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=sample_header())
+        writer = csv.DictWriter(f, fieldnames=filehandler.sample_header())
         writer.writerow({'alarm_time': alarm_set_point, 'alarm_on': True, 'Monday': False, 'Tuesday': False,
                         'Wednesday': False, 'Thursday': False, 'Friday': False, 'Saturday': False, 'Sunday': False, })
-
-# TODO: Move to filehandler
-
-
-def value_toggle(target_row, target_column, target_value):
-    rows = []
-    with open('saved_alarms.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        rows = list(reader)
-    for row in rows:
-        if row['alarm_time'] == target_row:
-            row[target_column] = target_value
-    with open('saved_alarms.csv', 'w', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=sample_header)
-        writer.writeheader()
-        writer.writerows(rows)
