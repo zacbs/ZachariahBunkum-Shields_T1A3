@@ -1,10 +1,7 @@
-alarm_time,alarm_on,monday,tuesday,wednesday,thursday,friday,saturday,sunday
-11:30,True,True,False,False,False,False,False,False
-16:45,True,False,False,False,False,False,False,False
-13:45,True,False,False,False,False,False,False,False
-22:00,True,False,False,False,False,False,False,False
-22:25,True,False,False,False,False,False,False,False
-22:35,True,False,False,False,False,False,False,False
-23:23,True,False,False,False,False,False,False,False
-23:24,True,False,False,False,False,False,False,False
-22:22,True,False,False,False,False,False,False,False
+alarm_time,alarm_on,reoccur
+11:30,True,False
+19:40,True,False
+16:30,True,False
+15:30,False,False
+13:30,True,False
+19:20,True,False

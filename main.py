@@ -4,11 +4,11 @@ import menu
 from os import system
 # from pygame import mixer
 from threading import Thread
+from time import sleep
 
 # Create save file if needed and ensure it is setup correctly
 filehandler.file_create()
 
-# TODO: Lookg at pygame intro, look for way to remove?
 # TODO: Remove playsound it is not working
 # TODO: Exception handling, no sound device 
 
@@ -60,9 +60,17 @@ def main():
             print("Invalid input, Try again!")
             user_input = menu.main_menu(alarm.current_time(), current_alarms)
 
+def clock():
+    while True:
+        sleep(1)
+        if alarm.alarm(filehandler.active_alarms(filehandler.csv_list()), alarm.current_time()[-5:]) == True:
+            print('Time to wake up!')
+            # call sound function
+
+
 
 t1 = Thread(target= main)
-t2 = Thread(target= )
+t2 = Thread(target= clock)
 
 t1.start()
 t2.start()
