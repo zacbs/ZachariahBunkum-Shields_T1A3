@@ -46,9 +46,14 @@ def active_alarms(list):
     return active_alarm
 
 def delete_alarm(alarm_time):
-    rows = csv_list()
-    with open('saved_alarms.csv', 'w', newlines='') as f:
-        writer = csv.writer(f)
+    with open('saved_alarms.csv', 'r', newline='') as file:
+        csv_reader = csv.reader(file)
+        rows = list(csv_reader)
+
+    with open('saved_alarms.csv', 'w', newline='') as file:
+        csv_writer = csv.writer(file)
         for row in rows:
-            if row and row[0] != alarm_time():
-                writer.writerow(row)
+            if row and row[0] != alarm_time:
+                csv_writer.writerow(row)
+
+delete_alarm('19:40')

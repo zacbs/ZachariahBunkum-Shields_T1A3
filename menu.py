@@ -59,6 +59,8 @@ def saved_alarm_menu(alarm_time):
             filehandler.value_toggle(alarm_time, 'reoccur', True)
         if alarm_reoccur == 'n':
             filehandler.value_toggle(alarm_time, 'reoccur', False)
+    elif user_output == '3':
+        filehandler.delete_alarm(alarm_time)
     return user_output
 
 

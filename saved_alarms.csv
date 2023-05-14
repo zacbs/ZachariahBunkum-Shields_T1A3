@@ -1,7 +1,4 @@
 alarm_time,alarm_on,reoccur
 11:30,True,False
-19:40,True,False
 16:30,True,False
-15:30,False,False
-13:30,True,False
 19:20,True,False
