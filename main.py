@@ -3,7 +3,7 @@ import filehandler
 import menu
 from os import system
 # from pygame import mixer
-import asyncio
+from threading import Thread
 
 # Create save file if needed and ensure it is setup correctly
 filehandler.file_create()
@@ -23,73 +23,46 @@ filehandler.file_create()
 
 # alarmsound.play()
 
-menu.clear_screen()
-print('Welcome to the alarm clock!')
-current_alarms = ', '.join(filehandler.active_alarms(filehandler.csv_list()))
-user_input = menu.main_menu(alarm.current_time(), current_alarms)
-
 # TODO: Replace filler with saved alarms
 # TODO: Exception handling, breaks if user input not integer
 # TODO: Exception handling, user input on menu.saved_menu
-while True:
-  current_alarms = ', '.join(filehandler.active_alarms(filehandler.csv_list()))
-  if user_input == 1:
-      menu.clear_screen()
-      alarm.save_alarm(menu.alarm_menu())
-      user_input = 0
-  elif user_input == 2:
-      menu.clear_screen()
-      user_input2 = menu.saved_menu()
-      if user_input2 == 'q':
-          user_input = 0
-      else:
-          menu.clear_screen()
-          menu.saved_alarm_menu(user_input2)
-  elif user_input == 3:
-      print('user pressed 3')
-      break
-  elif user_input == 0:
-      menu.clear_screen()
-      user_input = menu.main_menu(alarm.current_time(), current_alarms)
-  else:
-      menu.clear_screen()
-      print("Invalid input, Try again!")
-      user_input = menu.main_menu(alarm.current_time(), current_alarms)
+
+def main():
+    menu.clear_screen()
+    print('Welcome to the alarm clock!')
+    current_alarms = ', '.join(filehandler.active_alarms(filehandler.csv_list()))
+    user_input = menu.main_menu(alarm.current_time(), current_alarms)
+    while True:
+        current_alarms = ', '.join(filehandler.active_alarms(filehandler.csv_list()))
+        if user_input == 1:
+            menu.clear_screen()
+            alarm.save_alarm(menu.alarm_menu())
+            user_input = 0
+        elif user_input == 2:
+            menu.clear_screen()
+            user_input2 = menu.saved_menu()
+            if user_input2 == 'q':
+                user_input = 0
+            else:
+                menu.clear_screen()
+                user_input3 = menu.saved_alarm_menu(user_input2)
+                if user_input3 == '1':
+                    #   FIX?
+                    pass
+        elif user_input == 3:
+            menu.sound_menu()
+            user_input = 0
+        elif user_input == 0:
+            menu.clear_screen()
+            user_input = menu.main_menu(alarm.current_time(), current_alarms)
+        else:
+            menu.clear_screen()
+            print("Invalid input, Try again!")
+            user_input = menu.main_menu(alarm.current_time(), current_alarms)
 
 
-# from threading import Thread
-# import time
+t1 = Thread(target= main)
+t2 = Thread(target= )
 
-# thread_running = True
-
-
-# def my_forever_while():
-#     global thread_running
-
-#     start_time = time.time()
-
-#     # run this while there is no input
-#     while thread_running:
-#         time.sleep(0.1)
-
-#         if time.time() - start_time >= 5:
-#             start_time = time.time()
-#             print('Another 5 seconds has passed')
-
-
-# def take_input():
-#     user_input = input('Type user input: ')
-#     # doing something with the input
-#     print('The user input is: ', user_input)
-
-
-# if __name__ == '__main__':
-#     t1 = Thread(target=my_forever_while)
-#     t2 = Thread(target=take_input)
-
-#     t1.start()
-#     t2.start()
-
-#     t2.join()  # interpreter will wait until your process get completed or terminated
-#     thread_running = False
-#     print('The end')
+t1.start()
+t2.start()

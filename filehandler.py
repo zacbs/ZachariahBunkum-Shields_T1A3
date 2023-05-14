@@ -7,8 +7,7 @@ def csv_list():
     return rows
 
 def sample_header():
-    sample_header = ['alarm_time', 'alarm_on', 'Monday', 'Tuesday',
-                     'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    sample_header = ['alarm_time', 'alarm_on', 'reoccur']
     return sample_header
 
 def file_create():

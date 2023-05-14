@@ -1,5 +1,5 @@
-alarm_time,alarm_on,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
-11:30,True,False,False,False,False,False,False,False
+alarm_time,alarm_on,monday,tuesday,wednesday,thursday,friday,saturday,sunday
+11:30,True,True,False,False,False,False,False,False
 16:45,True,False,False,False,False,False,False,False
 13:45,True,False,False,False,False,False,False,False
 22:00,True,False,False,False,False,False,False,False
