@@ -8,7 +8,7 @@ Table of Coentents:
 - [R6: Project features](#r6-project-features)
 - [R7: Project managment](#r7-project-management)
 - [R8: How to use the application](#r8-how-to-use-the-application)
-= [Presentation](#presentation)
+- [Presentation](#presentation)
 
 
 
