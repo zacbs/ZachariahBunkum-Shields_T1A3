@@ -55,5 +55,3 @@ def delete_alarm(alarm_time):
         for row in rows:
             if row and row[0] != alarm_time:
                 csv_writer.writerow(row)
-
-delete_alarm('19:40')
