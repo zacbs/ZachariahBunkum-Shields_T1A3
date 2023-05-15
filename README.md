@@ -8,7 +8,7 @@ Table of Coentents:
 - [R6: Project features](#r6-project-features)
 - [R7: Project managment](#r7-project-management)
 - [R8: How to use the application](#r8-how-to-use-the-application)
-
+= [Presentation](#presentation)
 
 
 
@@ -75,6 +75,9 @@ Python is required to run the program and the dependencies are available in the 
 If you get a permission error run chmod +x run.sh before running the script
 
 ### Program use
-After running the script the program will run and can be used, follow the instructions laid out within the program. Any times entered will need to be entered as XX:XX with 24hr time ie hours from 00-23.
+After running the script the program will run and can be used, follow the instructions laid out within the program. Any times entered will need to be entered as 00-23:00-59
 ### Hardware requirements
 The program will need a sound device to play sound to or the alarm will only print a statement and warning that the program has no sound device available.
+
+# Presentation
+[Link](https://www.youtube.com/watch?v=9i9z8m2RWgI)
