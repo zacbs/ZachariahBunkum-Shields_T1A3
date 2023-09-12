@@ -1,5 +1,5 @@
 # T1A3 Terminal app
-Third assessment for term 1
+Terminal application
 
 Table of Coentents:
 
